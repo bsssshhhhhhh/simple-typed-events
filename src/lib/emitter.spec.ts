@@ -25,7 +25,7 @@ test('on / emit', ({ is }) => {
   is(invocationCount, 3);
 });
 
-test('can attach multiple events', ({ assert }) => {
+test('can attach multiple event listeners', ({ assert }) => {
   const emitter = createEventEmitter<Events>();
 
   let firstHandlerCalled = false;
@@ -76,7 +76,7 @@ test('off / emit', ({ is }) => {
   emitter.emit('finish');
 
   // nothing happens
-  emitter.off('start', () => {});
+  emitter.off('start', () => { });
 
   is(invocationCount, 3);
 });
@@ -84,9 +84,9 @@ test('off / emit', ({ is }) => {
 test('interface should be readonly', ({ assert }) => {
   const emitter = createEventEmitter<Events>();
 
-  
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const noop: any = () => {};
+  const noop: any = () => { };
 
   // @ts-expect-error Should not be able to reassign function
   emitter.emit = noop;
