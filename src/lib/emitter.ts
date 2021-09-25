@@ -1,4 +1,9 @@
+/**
+ * Creates an event emitter
+ * @returns Strongly-typed event emitter
+ */
 export function createEventEmitter<TEvents extends {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [eventName in TEventNames]: (...args: any[]) => void
 }, TEventNames extends keyof TEvents = keyof TEvents>() {
   const listeners: {
@@ -47,9 +52,24 @@ export function createEventEmitter<TEvents extends {
   };
 
   return {
+    /**
+     * Attach an event listener
+     */
     on,
+
+    /**
+     * Detach an event listener
+     */
     off,
+
+    /**
+     * Emit an event
+     */
     emit,
+
+    /**
+     * Attach an event listener that will only be called once
+     */
     once
   } as const;
 }
