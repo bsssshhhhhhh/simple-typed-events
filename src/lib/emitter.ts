@@ -1,5 +1,5 @@
 export function createEventEmitter<TEvents extends {
-  [eventName in TEventNames]: (...args: unknown[]) => void
+  [eventName in TEventNames]: (...args: any[]) => void
 }, TEventNames extends keyof TEvents = keyof TEvents>() {
   const listeners: {
     // eslint-disable-next-line @typescript-eslint/ban-types
