@@ -7,7 +7,12 @@
   "module": "build/module/index.js",
   "repository": "https://github.com/bsssshhhhhhh/simple-typed-events",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "event emitter",
+    "event-emitter",
+    "events",
+    "type-safe events"
+  ],
   "scripts": {
     "build": "run-p build:*",
     "build:main": "tsc -p tsconfig.json",
@@ -44,6 +49,7 @@
   "devDependencies": {
     "@ava/typescript": "^1.1.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/node": "^16.9.6",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
     "ava": "^3.12.1",
