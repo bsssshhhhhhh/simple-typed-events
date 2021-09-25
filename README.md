@@ -49,3 +49,7 @@ emitter.emit('progress', 3, 5); // no error
 // detach listeners by reference
 emitter.off('progress', onProgress);
 ```
+
+---
+
+Copyright © 2021 Brian Simon
