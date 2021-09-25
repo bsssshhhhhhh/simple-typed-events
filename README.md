@@ -1,6 +1,6 @@
 # simple-typed-events
 
-[![npm version](https://badge.fury.io/js/simple-typed-events.svg)](https://www.npmjs.com/package/simple-typed-events)
+[![npm version](https://badge.fury.io/js/simple-typed-events.svg)](https://www.npmjs.com/package/simple-typed-events) [![codecov](https://codecov.io/gh/bsssshhhhhhh/simple-typed-events/branch/master/graph/badge.svg?token=SZMB2OHTTH)](https://codecov.io/gh/bsssshhhhhhh/simple-typed-events)
 
 Simple event emitter interface with full TypeScript support. Simply define your event names and their callbacks in an interface and pass it to `createEventEmitter` as a generic arg.
 
