@@ -40,7 +40,7 @@ export function createEventEmitter<TEvents extends {
       eventListeners[i](...params);
     }
   };
-  
+
 
   const once = <TEventName extends TEventNames>(eventName: TEventName, handler: TEvents[TEventName]) => {
     const onHandler = ((...args: Parameters<typeof handler>) => {

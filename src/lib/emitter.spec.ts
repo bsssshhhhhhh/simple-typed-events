@@ -102,3 +102,41 @@ test('interface should be readonly', ({ assert }) => {
 
   assert(true);
 });
+
+test('should not be able to pass event names that were not defined', ({ assert }) => {
+  const emitter = createEventEmitter<Events>();
+
+  const noop = () => { };
+
+  // @ts-expect-error Should error
+  emitter.emit('no');
+
+  // @ts-expect-error Should error
+  emitter.off('no', noop);
+
+  // @ts-expect-error Should error
+  emitter.on('no', noop);
+
+  // @ts-expect-error Should error
+  emitter.once('no', noop);
+
+  assert(true);
+});
+
+test('enforce that all args are passed to emit()', ({ assert }) => {
+  const emitter = createEventEmitter<Events>();
+
+  // @ts-expect-error No args passed, 2 expected
+  emitter.emit('progress');
+
+  // @ts-expect-error 1 arg passed, 2 expected
+  emitter.emit('progress', 1);
+
+  // @ts-expect-error Correct number of args, wrong type
+  emitter.emit('progress', '1', 2);
+
+  // no error - correct number of args passed
+  emitter.emit('progress', 1, 2);
+
+  assert(true);
+});
