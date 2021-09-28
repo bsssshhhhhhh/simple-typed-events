@@ -11,7 +11,8 @@
     "event emitter",
     "event-emitter",
     "events",
-    "type-safe events"
+    "type-safe event",
+    "typescript event"
   ],
   "scripts": {
     "build": "run-p build:*",
