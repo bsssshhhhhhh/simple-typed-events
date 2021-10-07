@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.8](https://github.com/bsssshhhhhhh/simple-typed-events/compare/v1.0.7...v1.0.8) (2021-10-07)
+
+
+### Bug Fixes
+
+* **once:** fix detaching events attached via once() ([56c41f2](https://github.com/bsssshhhhhhh/simple-typed-events/commit/56c41f2b81a607745f67a2293e0ff3a2b90a8928))
+
 ### [1.0.7](https://github.com/bsssshhhhhhh/simple-typed-events/compare/v1.0.6...v1.0.7) (2021-09-28)
 
 ### 1.0.6 (2021-09-25)
