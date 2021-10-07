@@ -52,10 +52,14 @@ test('once / emit', ({ is }) => {
     invocationCount++;
   });
 
+  emitter.once('start', () => {
+    invocationCount++;
+  });
+
   emitter.emit('start');
   emitter.emit('start');
 
-  is(invocationCount, 1);
+  is(invocationCount, 2);
 });
 
 test('on / off / emit', ({ is }) => {
