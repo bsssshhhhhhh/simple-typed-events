@@ -11,6 +11,11 @@ export function createEventEmitter<TEvents extends {
     [key: string]: Function[] | undefined
   } = {};
 
+  const onceListeners: {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    [key: string]: Function[] | undefined
+  } = {};
+
   const on = <TEventName extends TEventNames>(eventName: TEventName, handler: TEvents[TEventName]) => {
     const eventListeners = listeners[eventName as string];
     if (!eventListeners) {
@@ -22,33 +27,38 @@ export function createEventEmitter<TEvents extends {
   };
 
   const off = <TEventName extends TEventNames>(eventName: TEventName, handler: TEvents[TEventName]) => {
-    const eventListeners = listeners[eventName as string];
-    if (!eventListeners || eventListeners.length === 0) {
-      return;
-    }
-
-    listeners[eventName as string] = eventListeners.filter((fn) => fn !== handler);
+    onceListeners[eventName as string] = onceListeners[eventName as string]?.filter((fn) => fn !== handler);
+    listeners[eventName as string] = listeners[eventName as string]?.filter((fn) => fn !== handler);
   };
 
   const emit = <TEventName extends TEventNames>(eventName: TEventName, ...params: Parameters<TEvents[TEventName]>) => {
     const eventListeners = listeners[eventName as string];
-    if (!eventListeners || eventListeners.length === 0) {
-      return;
+    const onceEventListeners = onceListeners[eventName as string];
+
+    if (eventListeners && eventListeners.length > 0) {
+      for (let i = 0; i < eventListeners.length; i++) {
+        eventListeners[i](...params);
+      }
     }
 
-    for (let i = 0; i < eventListeners.length; i++) {
-      eventListeners[i](...params);
+    if (onceEventListeners && onceEventListeners.length > 0) {
+      for (let i = 0; i < onceEventListeners.length; i++) {
+        onceEventListeners[i](...params);
+      }
+
+      onceListeners[eventName as string] = [];
     }
   };
 
 
   const once = <TEventName extends TEventNames>(eventName: TEventName, handler: TEvents[TEventName]) => {
-    const onHandler = ((...args: Parameters<typeof handler>) => {
-      handler(...args);
-      off(eventName, onHandler);
-    }) as TEvents[TEventName];
+    const eventListeners = onceListeners[eventName as string];
+    if (!eventListeners) {
+      onceListeners[eventName as string] = [handler];
+      return;
+    }
 
-    on(eventName, onHandler);
+    eventListeners.push(handler);
   };
 
   return {

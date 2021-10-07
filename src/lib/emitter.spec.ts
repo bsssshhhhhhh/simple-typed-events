@@ -58,7 +58,7 @@ test('once / emit', ({ is }) => {
   is(invocationCount, 1);
 });
 
-test('off / emit', ({ is }) => {
+test('on / off / emit', ({ is }) => {
   const emitter = createEventEmitter<Events>();
 
   let invocationCount = 0;
@@ -80,6 +80,21 @@ test('off / emit', ({ is }) => {
 
   is(invocationCount, 3);
 });
+
+
+test('once / off', ({ is }) => {
+  const emitter = createEventEmitter<Events>();
+
+  let called = false;
+  const onEvent = () => { called = true; };
+
+  emitter.once('finish', onEvent);
+  emitter.off('finish', onEvent);
+  emitter.emit('finish');
+
+  is(called, false);
+});
+
 
 test('interface should be readonly', ({ assert }) => {
   const emitter = createEventEmitter<Events>();
