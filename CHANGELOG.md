@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/bsssshhhhhhh/simple-typed-events/compare/v1.0.8...v1.0.9) (2021-10-20)
+
+
+### Bug Fixes
+
+* **tsconfig:** output es5 ([738b653](https://github.com/bsssshhhhhhh/simple-typed-events/commit/738b6535a55919ba0c05aabc19201aa9281e13a6))
+
 ### [1.0.8](https://github.com/bsssshhhhhhh/simple-typed-events/compare/v1.0.7...v1.0.8) (2021-10-07)
 
 
