@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/bsssshhhhhhh/simple-typed-events/compare/v1.0.11...v1.1.0) (2022-06-18)
+
+
+### Features
+
+* widen event name type to include numbers and symbols ([f22aa24](https://github.com/bsssshhhhhhh/simple-typed-events/commit/f22aa24ae04cf3a7de59f7c992e03ddd6b689bc6))
+
 ### [1.0.11](https://github.com/bsssshhhhhhh/simple-typed-events/compare/v1.0.10...v1.0.11) (2022-06-18)
 
 ### [1.0.10](https://github.com/bsssshhhhhhh/simple-typed-events/compare/v1.0.9...v1.0.10) (2021-10-20)
