@@ -6,17 +6,17 @@ export function createEventEmitter<TEvents extends {
   [eventName in TEventNames]: (...args: never[]) => void
 }, TEventNames extends keyof TEvents = keyof TEvents>() {
   const listeners: {
-    [key: string]: Function[] | undefined
+    [key: string | number | symbol]: Function[] | undefined
   } = {};
 
   const onceListeners: {
-    [key: string]: Function[] | undefined
+    [key: string | number | symbol]: Function[] | undefined
   } = {};
 
   const on = <TEventName extends TEventNames>(eventName: TEventName, handler: TEvents[TEventName]) => {
-    const eventListeners = listeners[eventName as string];
+    const eventListeners = listeners[eventName];
     if (!eventListeners) {
-      listeners[eventName as string] = [handler];
+      listeners[eventName] = [handler];
       return;
     }
 
@@ -24,13 +24,13 @@ export function createEventEmitter<TEvents extends {
   };
 
   const off = <TEventName extends TEventNames>(eventName: TEventName, handler: TEvents[TEventName]) => {
-    onceListeners[eventName as string] = onceListeners[eventName as string]?.filter((fn) => fn !== handler);
-    listeners[eventName as string] = listeners[eventName as string]?.filter((fn) => fn !== handler);
+    onceListeners[eventName] = onceListeners[eventName]?.filter((fn) => fn !== handler);
+    listeners[eventName] = listeners[eventName]?.filter((fn) => fn !== handler);
   };
 
   const emit = <TEventName extends TEventNames>(eventName: TEventName, ...params: Parameters<TEvents[TEventName]>) => {
-    const eventListeners = listeners[eventName as string];
-    const onceEventListeners = onceListeners[eventName as string];
+    const eventListeners = listeners[eventName];
+    const onceEventListeners = onceListeners[eventName];
 
     const errors: unknown[] = [];
 
@@ -53,7 +53,7 @@ export function createEventEmitter<TEvents extends {
         }
       }
 
-      onceListeners[eventName as string] = [];
+      onceListeners[eventName] = [];
     }
 
     if (errors.length > 0) {
@@ -63,9 +63,9 @@ export function createEventEmitter<TEvents extends {
 
 
   const once = <TEventName extends TEventNames>(eventName: TEventName, handler: TEvents[TEventName]) => {
-    const eventListeners = onceListeners[eventName as string];
+    const eventListeners = onceListeners[eventName];
     if (!eventListeners) {
-      onceListeners[eventName as string] = [handler];
+      onceListeners[eventName] = [handler];
       return;
     }
 
