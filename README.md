@@ -1,6 +1,6 @@
 # simple-typed-events
 
-[![npm](https://img.shields.io/npm/v/simple-typed-events)](https://www.npmjs.com/package/simple-typed-events) [![CircleCI](https://circleci.com/gh/bsssshhhhhhh/simple-typed-events/tree/master.svg?style=svg)](https://circleci.com/gh/bsssshhhhhhh/simple-typed-events/tree/master) [![codecov](https://codecov.io/gh/bsssshhhhhhh/simple-typed-events/branch/master/graph/badge.svg?token=SZMB2OHTTH)](https://codecov.io/gh/bsssshhhhhhh/simple-typed-events)
+[![npm](https://img.shields.io/npm/v/simple-typed-events)](https://www.npmjs.com/package/simple-typed-events) [![codecov](https://codecov.io/gh/bsssshhhhhhh/simple-typed-events/branch/master/graph/badge.svg?token=SZMB2OHTTH)](https://codecov.io/gh/bsssshhhhhhh/simple-typed-events)
 
 Simple event emitter interface with full TypeScript support. Simply define your event names and their callbacks in an interface and pass it to `createEventEmitter` as a generic arg.
 
@@ -50,6 +50,4 @@ emitter.emit('progress', 3, 5); // no error
 emitter.off('progress', onProgress);
 ```
 
----
 
-Copyright © 2021 Brian Simon
