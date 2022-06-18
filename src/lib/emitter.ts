@@ -32,18 +32,32 @@ export function createEventEmitter<TEvents extends {
     const eventListeners = listeners[eventName as string];
     const onceEventListeners = onceListeners[eventName as string];
 
+    const errors: unknown[] = [];
+
     if (eventListeners && eventListeners.length > 0) {
       for (let i = 0; i < eventListeners.length; i++) {
-        eventListeners[i](...params);
+        try {
+          eventListeners[i](...params);
+        } catch (e) {
+          errors.push(e);
+        }
       }
     }
 
     if (onceEventListeners && onceEventListeners.length > 0) {
       for (let i = 0; i < onceEventListeners.length; i++) {
-        onceEventListeners[i](...params);
+        try {
+          onceEventListeners[i](...params);
+        } catch (e) {
+          errors.push(e);
+        }
       }
 
       onceListeners[eventName as string] = [];
+    }
+
+    if (errors.length > 0) {
+      throw errors;
     }
   };
 
