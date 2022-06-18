@@ -3,16 +3,13 @@
  * @returns Strongly-typed event emitter
  */
 export function createEventEmitter<TEvents extends {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [eventName in TEventNames]: (...args: any[]) => void
+  [eventName in TEventNames]: (...args: never[]) => void
 }, TEventNames extends keyof TEvents = keyof TEvents>() {
   const listeners: {
-    // eslint-disable-next-line @typescript-eslint/ban-types
     [key: string]: Function[] | undefined
   } = {};
 
   const onceListeners: {
-    // eslint-disable-next-line @typescript-eslint/ban-types
     [key: string]: Function[] | undefined
   } = {};
 
